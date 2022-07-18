@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { OrderSuccessComponent } from './pages/order-success/order-success.component';
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'comming-soon', component: CommingSoonComponent },
   { path: 'installations-guide', component: InstallationsGuideComponent },
+  { path: 'products-list/:categoria', component: ProductsListComponent },
 
 ];
 

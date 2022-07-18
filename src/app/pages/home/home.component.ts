@@ -1,5 +1,7 @@
 import { Component, OnInit,HostListener } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { GlobalService } from 'src/app/services/global.service';
+import { format, parseISO, addDays  } from 'date-fns'
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  products;
 
   responsiveItems;
   tabs = 1;
@@ -55,7 +59,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(
+    private global: GlobalService
+  ) { }
 
   ngOnInit(): void {
     const width = window.innerWidth; 
@@ -66,6 +72,8 @@ export class HomeComponent implements OnInit {
     }else if (  1200 < width ) {
       this.responsiveItems = 4;
     } 
+
+    this.getAllProdutcs();
   } 
 
   selectTabs(id, event){
@@ -73,4 +81,13 @@ export class HomeComponent implements OnInit {
     this.tabs = id;
   }
 
+  getAllProdutcs(){ 
+
+    this.global.postService('products/', {}).subscribe(response => { 
+      if(response['status'] === 'success'){
+        this.products = response['data'];
+      }
+    })
+
+  }
 }

@@ -1,36 +1,38 @@
 <div class="product-box card-living">
     <div class="img-wrapper">
         <div class="front">
-            <img [src]="image" class="img-fluid bg-img" alt="">
+            <img [src]="product.imagenes[0]" class="img-fluid bg-img" alt="" appValidImage>
         </div>
         <div class="back">
-            <img [src]="image" class="img-fluid bg-img" alt="">
+            <img [src]="product.imagenes[0]" class="img-fluid bg-img" alt="" appValidImage>
         </div>
 
     </div>
     <div class="product-detail">
-        <h3 class="card-living__title">Slim Fit Cotton Shirt</h3>
-        <p class="card-living__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit aspernatur,
-            sequi obcaecati molestias sed, dolorum iusto necessitatibus</p>
+        <h3 class="card-living__title">{{product.titulo}}</h3>
+        <p class="card-living__description">{{product.descripcion}}</p>
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="card-living__price">$45.00</h4>
-            <div class="cart-info cart-wrap" [ngClass]="{'active': divShow}">
-                <button title="Add to cart">
-                    <i class="ti-shopping-cart"></i>
+            <h4 class="card-living__price" *ngIf="product.descuento != null">{{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>
+            <h4 class="card-living__price" *ngIf="product.descuento == null">{{ product.precio | currency }}</h4>
+            <div class="hoverAdd">
+                <button class="btn card-living__btn-plus">
+                    <i class="fa fa-plus"></i>
                 </button>
-                <a href="#" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                </a>
-                <a href="#" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                </a>
-                <a href="#" title="Compare">
-                    <i class="ti-reload" aria-hidden="true"></i>
-                </a>
+                <div class="cart-info cart-wrap" [ngClass]="{'active': divShow}">
+                    <button title="Add to cart">
+                        <i class="ti-shopping-cart"></i>
+                    </button>
+                    <a href="#" title="Add to Wishlist">
+                        <i class="ti-heart" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" title="Quick View">
+                        <i class="ti-search" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" title="Compare">
+                        <i class="ti-reload" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
-            <button class="btn card-living__btn-plus" (click)="divShow = !divShow">
-                <i class="fa fa-plus"></i>
-            </button>
         </div>
         <h5 class="free-shopping"><img class="img-fluid mr-3" src="assets/images/icon/free-shopping.png" alt=""> Free
             shipping

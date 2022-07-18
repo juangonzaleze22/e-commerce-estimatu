@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  categories;
+
+  constructor(
+    public global: GlobalService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.getCategories()
+
+ 
+  }
+
+  getCategories(){
+    this.global.postService('categories/', {}).subscribe(response => { 
+      if(response['status'] === 'success'){
+        this.categories = response['data'];
+      }
+    })
   }
 
 }

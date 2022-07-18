@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +29,10 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { CommingSoonComponent } from './pages/comming-soon/comming-soon.component';
 import { InstallationsGuideComponent } from './pages/installations-guide/installations-guide.component';
+import { ValidImageDirective } from './directives/valid-image.directive';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -49,14 +56,23 @@ import { InstallationsGuideComponent } from './pages/installations-guide/install
     CheckoutComponent,
     WishlistComponent,
     CommingSoonComponent,
-    InstallationsGuideComponent
+    InstallationsGuideComponent,
+    ValidImageDirective,
+    ProductsListComponent,
+    LoadingComponent,
+    NotFoundComponent,
+
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     IvyCarouselModule,
-    CarouselModule
+    CarouselModule,
+    BrowserModule, 
+    InfiniteScrollModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -196,55 +196,23 @@
                             <div id="tab-4" class="tab-content" [ngClass]="{'active default': tabs == 1}"
                                 [ngStyle]="{'display': tabs == 1 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box">
+                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
                                         <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$50.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
+                                            <div class="lable-block">
+                                                <span class="lable3">new</span> <span
                                                     class="lable4">on sale</span></div>
                                             <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-2.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                <a href="" class="no-redirect">
+                                                        <img
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-2.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -262,231 +230,10 @@
                                                     class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                                     class="fa fa-star"></i></div>
                                             <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
+                                                <h6>{{prod.titulo}}</h6>
                                             </a>
-                                            <h4>$65.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>multi-color polo tshirt</h6>
-                                            </a>
-                                            <h4>$45.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$30.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>multi-color polo tshirt</h6>
-                                            </a>
-                                            <h4>$65.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-6.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-6.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
-                                            </a>
-                                            <h4>$50.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-8.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-8.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$25.00</h4>
+                                            <h4>${{prod.precioDescuento || prod.precio}}</h4>
+                                           <!--  <span>{{prod.precioDescuento}}</span> -->
                                             <h5 class="free-shopping"><img class="img-fluid mr-3"
                                                     src="assets/images/icon/free-shopping.png" alt=""> Free shipping
                                             </h5>
@@ -497,19 +244,23 @@
                             <div id="tab-5" class="tab-content" [ngClass]="{'active default': tabs == 2}"
                                 [ngStyle]="{'display': tabs == 2 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box">
+                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
                                         <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
+                                            <div class="lable-block">
+                                                <span class="lable3">new</span> <span
                                                     class="lable4">on sale</span></div>
                                             <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                <a href="" class="no-redirect">
+                                                        <img
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -527,290 +278,38 @@
                                                     class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                                     class="fa fa-star"></i></div>
                                             <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
+                                                <h6>{{prod.titulo}}</h6>
                                             </a>
-                                            <h4>$50.00</h4>
+                                            <h4>${{prod.precioDescuento || prod.precio}}</h4>
+                                           <!--  <span>{{prod.precioDescuento}}</span> -->
                                             <h5 class="free-shopping"><img class="img-fluid mr-3"
                                                     src="assets/images/icon/free-shopping.png" alt=""> Free shipping
                                             </h5>
                                         </div>
                                     </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$35.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
-                                            </a>
-                                            <h4>$55.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$56.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-2.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-2.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$35.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-8.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-8.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
-                                            </a>
-                                            <h4>$16.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>multi-color polo tshirt</h6>
-                                            </a>
-                                            <h4>$19.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$18.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                             </div>
                             <div id="tab-6" class="tab-content" [ngClass]="{'active default': tabs == 3}"
                                 [ngStyle]="{'display': tabs == 3 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box">
+                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
                                         <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
+                                            <div class="lable-block">
+                                                <span class="lable3">new</span> <span
                                                     class="lable4">on sale</span></div>
                                             <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                <a href="" class="no-redirect">
+                                                        <img
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
+                                                        [src]="prod.imagenes[0]"
+                                                        appValidImage
+                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -828,272 +327,16 @@
                                                     class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                                     class="fa fa-star"></i></div>
                                             <a href="" class="no-redirect">
-                                                <h6>multi-color polo tshirt</h6>
+                                                <h6>{{prod.titulo}}</h6>
                                             </a>
-                                            <h4>$25.00</h4>
+                                            <h4>${{prod.precioDescuento || prod.precio}}</h4>
+                                           <!--  <span>{{prod.precioDescuento}}</span> -->
                                             <h5 class="free-shopping"><img class="img-fluid mr-3"
                                                     src="assets/images/icon/free-shopping.png" alt=""> Free shipping
                                             </h5>
                                         </div>
                                     </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$35.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-4.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>multi-color polo tshirt</h6>
-                                            </a>
-                                            <h4>$28.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
-                                            </a>
-                                            <h4>$16.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-3.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$24.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-5.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>Candy red solid tshirt</h6>
-                                            </a>
-                                            <h4>$24.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="lable-block"><span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-7.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>sleevles white tshirt with text</h6>
-                                            </a>
-                                            <h4>$38.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div routerLink="product-detail" class="product-box">
-                                        <div class="img-wrapper">
-                                            <div class="front">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="" class="no-redirect"><img
-                                                        src="../assets/images/home/test/test-1.png"
-                                                        class="img-fluid bg-img" alt=""></a>
-                                            </div>
-                                            <div class="cart-info cart-wrap">
-                                                <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                    title="Add to cart"><i class="ti-shopping-cart"></i></button> <a
-                                                    href="javascript:void(0)" title="Add to Wishlist"><i
-                                                        class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#quick-view"
-                                                    title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                <a href="compare.html" title="Compare"><i class="ti-reload"
-                                                        aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div>
-                                            <a href="" class="no-redirect">
-                                                <h6>purple solid polo tshirt</h6>
-                                            </a>
-                                            <h4>$24.00</h4>
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
-                                            </h5>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1394,3 +637,5 @@
     </section>
 
     <!-- instagram section layout  end -->
+
+    

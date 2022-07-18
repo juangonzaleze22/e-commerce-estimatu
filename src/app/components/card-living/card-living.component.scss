@@ -67,6 +67,13 @@
         }
     }
 
+    .hoverAdd:hover{
+        .cart-info{
+            opacity: 1;
+        }
+    }
+
+   
     .cart-wrap{ 
         bottom: 90px;
         right: 25px;

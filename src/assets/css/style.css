@@ -26233,3 +26233,8 @@ body.rtl .account-setting {
         margin: 0;
       }
     }
+
+    .aspect-radio-cover-large{ 
+      aspect-ratio: 2/2.8;
+      object-fit: cover;
+    }

@@ -8,12 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardLivingComponent implements OnInit {
   
   divShow: boolean = false;
-  @Input() image: string;
+  @Input() product;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.image)
+    console.log(this.product)
   }
 
 }
