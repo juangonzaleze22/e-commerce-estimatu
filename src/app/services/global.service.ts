@@ -16,8 +16,8 @@ export class GlobalService {
   public dataUser: any;
   isLoggedIn$ = new EventEmitter<boolean>();
 
-  url = "https://api-ecommerce-production.up.railway.app/api/";
-  urlImage = "https://api-ecommerce-production.up.railway.app/";
+  url = "https://api.mamidecor.com/api/";
+  urlImage = "https://api.mamidecor.com/";
   //url = "http://localhost:7915/api/";
   //urlImage = "http://localhost:7915/";
 

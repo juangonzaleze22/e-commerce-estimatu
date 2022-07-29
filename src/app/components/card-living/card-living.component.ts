@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardLivingComponent implements OnInit {
   
-  divShow: boolean = false;
   @Input() product;
+  divShow: boolean = false;
 
   constructor() { }
 

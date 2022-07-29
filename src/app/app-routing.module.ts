@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'faq', component: FaqComponent },
-  { path: 'product-detail', component: ProductDetailComponent },
+  { path: 'product-detail/:idProduct', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },

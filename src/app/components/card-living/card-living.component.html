@@ -9,7 +9,7 @@
 
     </div>
     <div class="product-detail">
-        <h3 class="card-living__title">{{product.titulo}}</h3>
+        <h3 class="card-living__title" [routerLink]="['/product-detail', product._id]">{{product.titulo}}</h3>
         <p class="card-living__description">{{product.descripcion}}</p>
         <div class="d-flex align-items-center justify-content-between">
             <h4 class="card-living__price" *ngIf="product.descuento != null">{{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>

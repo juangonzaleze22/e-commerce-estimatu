@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -8,6 +10,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class ProductDetailComponent implements OnInit {
 
+  product;
+  loading: boolean = false;
+
   customOptions: OwlOptions = {
     loop: false,
     dots: false,
@@ -15,9 +20,30 @@ export class ProductDetailComponent implements OnInit {
     margin: 15
   }
 
-  constructor() { }
+  constructor(
+    public global: GlobalService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.getProduct();
+  }
+
+  getProduct() {
+    this.loading = true;
+    const idProduct = this.route.snapshot.paramMap.get('idProduct');
+
+    let data = {
+      idProduct
+    }
+
+    this.global.postService('products/getProductById',data).subscribe(response => {
+      this.loading = false;
+      console.log(response)
+      if(response['status'] === 'success'){
+        this.product = response['data'];
+      }
+    })
   }
 
 }
