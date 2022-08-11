@@ -5,6 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -65,6 +69,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -72,6 +78,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CarouselModule,
     BrowserModule, 
     InfiniteScrollModule,
+    NgSelectModule,
 
   ],
   providers: [],

@@ -69,6 +69,7 @@ export class ProductsListComponent implements OnInit {
       this.loading = false;
       if (response['status'] === 'success') {
 
+
         if (this.products.length === 0) {
           this.products = response['data']
         }else{ 

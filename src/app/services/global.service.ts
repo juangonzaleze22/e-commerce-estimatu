@@ -16,6 +16,8 @@ export class GlobalService {
   public dataUser: any;
   isLoggedIn$ = new EventEmitter<boolean>();
 
+  public IdAmin = "62e83d743bd6dd3957eb912f";
+
   url = "https://api.mamidecor.com/api/";
   urlImage = "https://api.mamidecor.com/";
   //url = "http://localhost:7915/api/";
@@ -37,6 +39,7 @@ export class GlobalService {
   observable(): Subject<any> {
     return this.fooSubjet;
   }
+
 
   /* SERVICIOS */
   postService(service: string, data: any, tipo: number = 0){
@@ -116,4 +119,13 @@ export class GlobalService {
     formData.append(name, file, file.name);
     return formData;
   }
+
+  calcDiscount(price, discount){
+    if (discount == ''){
+      return false;
+    }
+    const result = parseInt(price) - (parseInt(price) * (parseInt(discount) / 100));
+    return result
+  }
+
 }

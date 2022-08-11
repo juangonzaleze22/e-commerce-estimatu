@@ -14,7 +14,10 @@
                 </div>
                 <div class="col-lg-6 text-end">
                     <ul class="header-dropdown">
-                        <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                        <li class="mobile-wishlist">
+                            <a href="#">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
                         </li>
                         <li class="onhover-dropdown mobile-account" routerLink="profile">
                              <i class="fa fa-user" aria-hidden="true"></i>
@@ -114,19 +117,37 @@
 
                     </div>
                 </div>
-                <div class="alignNav">
-                    <nav id="main-nav">
+                <div class="alignNav w-100 d-flex justify-content-center">
+                    <nav id="main-nav" class="w-100 d-flex justify-content-center">
 
-                        <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                        <ul id="main-menu" class="sm pixelstrap sm-horizontal w-100 d-flex justify-content-center">
                             <li>
                                 <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
                                         aria-hidden="true"></i></div>
-                            </li>
-                            <li *ngFor="let category of categories">
-                                <a [routerLink]="['products-list', category.categoria]" [routerLinkActive]="['active']">{{category.categoria}}</a>
-                            </li>
-                            <li>
-                                <a [routerLink]="['products-list', 'all']" [routerLinkActive]="['active']">See All</a>
+                            </li> 
+                            <li class="" [ngClass]="{'mega' : category.subcategories?.length > 4 }" *ngFor="let category of categories">
+                                <a [routerLink]="['products-list', category._id]" [routerLinkActive]="['active']" class="has-submenu highlighted">{{category.categoria}}<span class="sub-arrow" *ngIf="category.subcategories?.length > 0"></span></a>
+                                <ul class="mega-menu full-mega-menu sm-nowrap" *ngIf="category.subcategories?.length > 4">
+                                    <li>
+                                        <div class="container">
+                                            <div class="link-section">
+                                                <div class="menu-content menu-content-links">
+                                                   <a [routerLink]="['products-list', sub._id]" [routerLinkActive]="['active']" *ngFor="let sub of category.subcategories">{{sub.subCategoria}}<!-- <span class="new-tag">new</span> --></a>
+                                                </div>
+                                            </div>
+                                           <!--  <div class="row">
+                                                <div class="col-12">
+                                                    <img src="../assets/images/menu-banner.jpg" class="img-fluid mega-img">
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="sm-nowrap" *ngIf="category.subcategories?.length < 4 && category.subcategories?.length > 0">
+                                    <li *ngFor="let sub of category.subcategories">
+                                        <a [routerLink]="['products-list', sub._id]" [routerLinkActive]="['active']">{{sub.subCategoria}}<!-- <span class="new-tag">new</span> --></a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>

@@ -26238,3 +26238,101 @@ body.rtl .account-setting {
       aspect-ratio: 2/2.8;
       object-fit: cover;
     }
+
+    
+.list-specifications{
+  margin: 10px 0;
+}
+
+.list-specifications li{ 
+  display: grid;
+  justify-content: space-between;
+  font-size: 14px;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.list-specifications.add-products li{
+  grid-template-columns: 1fr 1fr 50px;
+  position: relative;
+}
+
+.list-specifications.add-products li .btn-delete-top-right{
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.list-specifications.add-products li:hover .btn-delete-top-right{
+  transform: translateY(-50%) scale(1);
+  
+}
+
+.list-specifications li span{
+  /* min-width: max-content; */
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  color: #6d6d6d;
+} 
+
+.list-specifications li span:nth-child(2){
+  font-weight: 500;
+  color: black;
+}
+
+.list-specifications li .btn-delete{
+
+}
+
+
+    /* ng select options */
+
+    .ng-select{
+      border-radius: 0px;
+      border: 1px solid #ced4da;
+      height: 38.4px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+      padding: 2.5px 0;
+    }
+
+    .btn-select-blue{ 
+      color: var(--theme-deafult);
+    }
+
+    .ng-dropdown-panel{
+      top: 38px;
+      left: 0;
+    }
+
+    .ng-dropdown-panel-items{
+      margin: 0;
+      background: #fff;
+      border: 1px solid #d1d1d1;
+      border-radius: 0.25rem;
+      padding: 0.48rem 0.75rem;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    .ng-select-container{
+      transform: translateY(7px);
+    }
+
+    .ng-select .ng-select-container .ng-value-container .ng-input>input{
+      padding-left: 15px !important;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
+      margin-left: 15px !important;
+      font-size: 1rem;
+      font-weight: 400;
+    }

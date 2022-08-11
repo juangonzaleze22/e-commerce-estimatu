@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { GlobalService } from 'src/app/services/global.service';
@@ -11,7 +12,9 @@ import { GlobalService } from 'src/app/services/global.service';
 export class ProductDetailComponent implements OnInit {
 
   product;
+  myFormAddProduct: FormGroup;
   loading: boolean = false;
+  selectedPrice;
 
   customOptions: OwlOptions = {
     loop: false,
@@ -22,11 +25,16 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     public global: GlobalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.getProduct();
+    this.myFormAddProduct = this.fb.group({
+      size: [],
+      quantity: [1],
+    });
   }
 
   getProduct() {
@@ -42,8 +50,34 @@ export class ProductDetailComponent implements OnInit {
       console.log(response)
       if(response['status'] === 'success'){
         this.product = response['data'];
+        this.selectedPrice = this.product.sizes[0];
+        this.myFormAddProduct.controls['size'].setValue(this.selectedPrice);
       }
     })
+
   }
+
+  get quantity() {
+    return this.myFormAddProduct.controls['quantity'].value;
+  }
+
+  setInputNumber(){
+    console.log(this.myFormAddProduct.value)
+  }
+
+  onSelectedPrice($event){
+    console.log($event)
+    this.selectedPrice = $event
+  }
+
+  onSubmit(){
+    /* if (!this.myFormProducts.invalid) {
+    
+    } */
+  }
+
+  
+
+  
 
 }

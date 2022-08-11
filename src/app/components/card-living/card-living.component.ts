@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-card-living',
@@ -10,10 +11,17 @@ export class CardLivingComponent implements OnInit {
   @Input() product;
   divShow: boolean = false;
 
-  constructor() { }
+  constructor(
+    public global: GlobalService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.product)
+ /*    this.product.sizes.array.forEach(element => {
+      element.price = parseFloat(element.price);
+      element.discount? parseFloat(element.price) : null
+      return element
+    }); */
+
   }
 
 }

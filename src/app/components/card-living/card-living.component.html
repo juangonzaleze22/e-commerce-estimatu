@@ -10,10 +10,12 @@
     </div>
     <div class="product-detail">
         <h3 class="card-living__title" [routerLink]="['/product-detail', product._id]">{{product.titulo}}</h3>
-        <p class="card-living__description">{{product.descripcion}}</p>
+        <!-- <p class="card-living__description">{{product.descripcion}}</p> -->
         <div class="d-flex align-items-center justify-content-between">
-            <h4 class="card-living__price" *ngIf="product.descuento != null">{{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>
-            <h4 class="card-living__price" *ngIf="product.descuento == null">{{ product.precio | currency }}</h4>
+            <h4 class="card-living__price" *ngIf="product.sizes[0].discount">{{ global.calcDiscount(product.sizes[0].price, product.sizes[0].discount) | currency }} <del>{{product.sizes[0].price | currency}}</del></h4>
+            <h4 class="card-living__price" *ngIf="!product.sizes[0].discount">{{product.sizes[0].price | currency}}</h4>
+            <!-- <h4 class="card-living__price" *ngIf="product.descuento != null">{{ product.precioDescuento | currency }} <del>{{product.precio | currency}}</del></h4>
+            <h4 class="card-living__price" *ngIf="product.descuento == null">{{ product.precio | currency }}</h4> -->
             <div class="hoverAdd">
                 <button class="btn card-living__btn-plus">
                     <i class="fa fa-plus"></i>
@@ -34,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <h5 class="free-shopping"><img class="img-fluid mr-3" src="assets/images/icon/free-shopping.png" alt=""> Free
+        <h5 *ngIf="product.envio" class="free-shopping"><img class="img-fluid mr-3" src="assets/images/icon/free-shopping.png" alt=""> Free
             shipping
         </h5>
     </div>
