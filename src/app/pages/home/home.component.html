@@ -196,23 +196,24 @@
                             <div id="tab-4" class="tab-content" [ngClass]="{'active default': tabs == 1}"
                                 [ngStyle]="{'display': tabs == 1 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
+                                    <div [routerLink]="['/product-detail', prod._id]" class="product-box" *ngFor="let prod of productDiscount | slice:0:8">
                                         <div class="img-wrapper">
                                             <div class="lable-block">
-                                                <span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
+                                                <span class="lable3">{{getPriceDiscount(prod.sizes)?.discount }}%</span>
+                                                <!--  <span
+                                                    class="lable4">on sale</span> --></div>
                                             <div class="front">
                                                 <a href="" class="no-redirect">
                                                         <img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -232,9 +233,10 @@
                                             <a href="" class="no-redirect">
                                                 <h6>{{prod.titulo}}</h6>
                                             </a>
-                                            <h4>${{ prod.precio}}</h4>
+                                            <h4>{{global.calcDiscount(getPriceDiscount(prod.sizes)?.price, getPriceDiscount(prod.sizes)?.discount) | currency}} <del class="ms-2">{{getPriceDiscount(prod.sizes)?.price | currency}}</del></h4>
                                            <!--  <span>{{prod.precioDescuento}}</span> -->
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
+                                            <h5 class="free-shopping" *ngIf="prod.envio">
+                                                <img class="img-fluid mr-3"
                                                     src="assets/images/icon/free-shopping.png" alt=""> Free shipping
                                             </h5>
                                         </div>
@@ -244,23 +246,24 @@
                             <div id="tab-5" class="tab-content" [ngClass]="{'active default': tabs == 2}"
                                 [ngStyle]="{'display': tabs == 2 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
+                                    <div [routerLink]="['/product-detail', prod._id]" class="product-box" *ngFor="let prod of productNews | slice:0:8">
                                         <div class="img-wrapper">
                                             <div class="lable-block">
-                                                <span class="lable3">new</span> <span
-                                                    class="lable4">on sale</span></div>
+                                                <span class="lable3">new</span> <!-- <span
+                                                    class="lable4">on sale</span> -->
+                                                </div>
                                             <div class="front">
                                                 <a href="" class="no-redirect">
                                                         <img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -280,10 +283,11 @@
                                             <a href="" class="no-redirect">
                                                 <h6>{{prod.titulo}}</h6>
                                             </a>
-                                            <h4>${{prod.precioDescuento || prod.precio}}</h4>
-                                           <!--  <span>{{prod.precioDescuento}}</span> -->
-                                            <h5 class="free-shopping"><img class="img-fluid mr-3"
-                                                    src="assets/images/icon/free-shopping.png" alt=""> Free shipping
+                                            <h4 *ngIf="prod.sizes[0].discount">{{global.calcDiscount(prod.sizes[0].price, prod.sizes[0].discount) | currency}} <del class="ms-2">{{prod.sizes[0].price | currency}}</del></h4>
+                                            <h4 *ngIf="!prod.sizes[0].discount">{{prod.sizes[0].price | currency}}</h4>
+                                            <!--  <span>{{prod.precioDescuento}}</span> -->
+                                            <h5 class="free-shopping" *ngIf="prod.envio">
+                                                <img class="img-fluid mr-3" src="assets/images/icon/free-shopping.png" alt=""> Free shipping
                                             </h5>
                                         </div>
                                     </div>
@@ -293,7 +297,7 @@
                             <div id="tab-6" class="tab-content" [ngClass]="{'active default': tabs == 3}"
                                 [ngStyle]="{'display': tabs == 3 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div routerLink="product-detail" class="product-box" *ngFor="let prod of products | slice:0:8">
+                                    <div [routerLink]="['/product-detail', prod._id]" class="product-box" *ngFor="let prod of productDiscount | slice:0:8">
                                         <div class="img-wrapper">
                                             <div class="lable-block">
                                                 <span class="lable3">new</span> <span
@@ -303,13 +307,13 @@
                                                         <img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="back">
                                                 <a href="" class="no-redirect"><img
                                                         [src]="prod.imagenes[0]"
                                                         appValidImage
-                                                        class="img-fluid bg-img aspect-radio-cover-large" alt=""></a>
+                                                        class="img-fluid bg-img aspect-radio-cover" alt=""></a>
                                             </div>
                                             <div class="cart-info cart-wrap">
                                                 <button data-bs-toggle="modal" data-bs-target="#addtocart"
@@ -613,7 +617,7 @@
     </div>
     <section class="ratio2_1">
         <div class="container-fluid px-0">
-            <owl-carousel-o [options]="customOptions">
+            <owl-carousel-o class="owl-navbar" [options]="customOptions">
                 <ng-template carouselSlide>
                     <img class="img-fluid" src="assets/images/home/social/social-1.png" alt="">
                 </ng-template>

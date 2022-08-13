@@ -10,7 +10,8 @@ import { format, parseISO, addDays  } from 'date-fns'
 })
 export class HomeComponent implements OnInit {
 
-  products;
+  productDiscount;
+  productNews;
 
   responsiveItems;
   tabs = 1;
@@ -73,7 +74,8 @@ export class HomeComponent implements OnInit {
       this.responsiveItems = 4;
     } 
 
-    this.getAllProdutcs();
+    this.getProductsDiscount();
+    this.getAllProductsNews();
   } 
 
   selectTabs(id, event){
@@ -81,13 +83,45 @@ export class HomeComponent implements OnInit {
     this.tabs = id;
   }
 
-  getAllProdutcs(){ 
+  getProductsDiscount(){ 
 
-    this.global.postService('products/', {}).subscribe(response => { 
+    let data = { 
+      limit: 8
+    }
+
+    this.global.postService('products/getProductDiscount', data).subscribe(response => { 
       if(response['status'] === 'success'){
-        this.products = response['data'];
+        this.productDiscount = response['data'];
       }
     })
 
+  }
+
+  getAllProductsNews(){ 
+
+    let data = { 
+      limit: 8
+    }
+
+    this.global.postService('products/getAllProductsNews', data).subscribe(response => { 
+      if(response['status'] === 'success'){
+        this.productNews = response['data'];
+      }
+    })
+
+  }
+
+  getPriceDiscount(sizes){
+
+    let selectPrice;
+
+    sizes.some(size => { 
+      if (size.discount){
+        selectPrice = size;
+        return size
+      }
+    })
+
+    return selectPrice
   }
 }

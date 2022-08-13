@@ -20,8 +20,8 @@ export class GlobalService {
 
   url = "https://api.mamidecor.com/api/";
   urlImage = "https://api.mamidecor.com/";
-  //url = "http://localhost:7915/api/";
-  //urlImage = "http://localhost:7915/";
+  /* url = "http://localhost:7915/api/";
+  urlImage = "http://localhost:7915/"; */
 
   constructor(
     private http: HttpClient,
