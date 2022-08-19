@@ -157,11 +157,12 @@
                     <h2>Categories</h2>
                 </div>
             </div>
+
             <div class="col-12 my-5">
                 <carousel [cellsToShow]=responsiveItems arrowsOutside=true arrows=false adaptiveHeight="true"
                     height="250" width="100%">
                     <div class="carousel-cell" *ngFor="let item of categories">
-                        <app-card-category [title]="item.title" [image]="item.image"></app-card-category>
+                        <app-card-category [title]="item.categoria" [image]="item.pathUrl"></app-card-category>
                     </div>
                 </carousel>
             </div>
@@ -196,7 +197,7 @@
                             <div id="tab-4" class="tab-content" [ngClass]="{'active default': tabs == 1}"
                                 [ngStyle]="{'display': tabs == 1 ? 'block' : 'none'}">
                                 <div class="no-slider row">
-                                    <div [routerLink]="['/product-detail', prod._id]" class="product-box" *ngFor="let prod of productDiscount | slice:0:8">
+                                    <div [routerLink]="['/product-detail', prod._id, getPriceDiscount(prod.sizes)?.id]" class="product-box" *ngFor="let prod of productDiscount">
                                         <div class="img-wrapper">
                                             <div class="lable-block">
                                                 <span class="lable3">{{getPriceDiscount(prod.sizes)?.discount }}%</span>

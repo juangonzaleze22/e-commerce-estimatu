@@ -38610,6 +38610,10 @@ body.rtl .account-setting {
   font-size: 10px;
 }
 
+.radio-section-block label.active{
+  border-color: var(--theme-deafult);
+}
+
 .radio-section-block input {
   display: none;
 }
@@ -38639,7 +38643,6 @@ body.rtl .account-setting {
 
 .custom-size {
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 10px auto;
 }

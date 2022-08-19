@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-card-category',
@@ -10,9 +11,12 @@ export class CardCategoryComponent implements OnInit {
   @Input() title: string;
   @Input() image: string;
 
-  constructor() { }
+  constructor(
+    public global: GlobalService
+  ) { }
 
   ngOnInit(): void {
+
   }
 
 }

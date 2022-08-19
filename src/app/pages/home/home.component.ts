@@ -12,11 +12,12 @@ export class HomeComponent implements OnInit {
 
   productDiscount;
   productNews;
+  categories;
 
   responsiveItems;
   tabs = 1;
 
-  categories = [
+/*   categories = [
     {
       title: "Living Room",
       image: "assets/images/home/categories/category-1.png",
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
       title: "Living Room",
       image: "assets/images/home/categories/category-4.png",
     }
-  ]
+  ] */
 
   /* instagram */
 
@@ -76,6 +77,7 @@ export class HomeComponent implements OnInit {
 
     this.getProductsDiscount();
     this.getAllProductsNews();
+    this.getCategories();
   } 
 
   selectTabs(id, event){
@@ -110,6 +112,21 @@ export class HomeComponent implements OnInit {
     })
 
   }
+
+  getCategories(){ 
+
+    let data = { 
+    }
+
+    this.global.postService('categories/', data).subscribe(response => { 
+      if(response['status'] === 'success'){
+        this.categories = response['data']
+       /* this.categories = resultCategories */
+      }
+    })
+
+  }
+
 
   getPriceDiscount(sizes){
 

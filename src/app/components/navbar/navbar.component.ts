@@ -94,9 +94,9 @@ export class NavbarComponent implements OnInit {
     this.global.postService('categories/', admin).subscribe(response => {
       if (response['status'] === 'success') {
 
-        this.categories = response['data'].filter(item => {
+        this.categories = response['data']/* .filter(item => {
           return item.userId == this.global.IdAmin
-        }).map(item => {
+        }) */.map(item => {
 
           let data = {
             client: true,

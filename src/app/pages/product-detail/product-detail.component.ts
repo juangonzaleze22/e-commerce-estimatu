@@ -40,6 +40,7 @@ export class ProductDetailComponent implements OnInit {
   getProduct() {
     this.loading = true;
     const idProduct = this.route.snapshot.paramMap.get('idProduct');
+    const idPrice = this.route.snapshot.paramMap.get('idPrice');
 
     let data = {
       idProduct
@@ -50,7 +51,10 @@ export class ProductDetailComponent implements OnInit {
       console.log(response)
       if(response['status'] === 'success'){
         this.product = response['data'];
-        this.selectedPrice = this.product.sizes[0];
+
+        const selectFilter = this.product.sizes.filter(price => price.id == idPrice );
+
+        this.selectedPrice = selectFilter[0] || this.product.sizes[0];
         this.myFormAddProduct.controls['size'].setValue(this.selectedPrice);
       }
     })
@@ -65,9 +69,9 @@ export class ProductDetailComponent implements OnInit {
     console.log(this.myFormAddProduct.value)
   }
 
-  onSelectedPrice($event){
-    console.log($event)
-    this.selectedPrice = $event
+  onSelectedPrice(value){
+    this.selectedPrice = value
+    console.log(this.selectedPrice)
   }
 
   onSubmit(){
