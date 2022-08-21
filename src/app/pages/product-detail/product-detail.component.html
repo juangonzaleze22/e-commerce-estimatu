@@ -58,17 +58,21 @@
                                 </div> -->
 
                                 <h3 class="price-detail"
-                                    *ngIf="!this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    *ngIf="!this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount) && !customPrice">
                                     {{selectedPrice?.price | currency: 'USD'}}
                                 </h3>
 
                                 <h3 class="price-detail"
-                                    *ngIf="this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
+                                    *ngIf="this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount) && !customPrice">
                                     {{this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount) |
                                     currency}}
                                     <del class="ms-2">{{selectedPrice?.price | currency: 'USD'}}</del>
                                     <span>{{selectedPrice?.discount}}% </span>
                                 </h3>
+                                <h3 class="price-detail" *ngIf="customPrice">
+                                    {{customPrice | currency: 'USD'}}
+                                </h3>
+                                
                                 <!-- <ul class="color-variant">
                                     <li class="bg-light0 active"></li>
                                     <li class="bg-light1"></li>
@@ -98,7 +102,7 @@
 
                                 <form [formGroup]="myFormAddProduct" (ngSubmit)="onSubmit()" autocomplete="off">
                                     <div class="">
-            
+
                                         <!-- <div *ngIf="this.global.calcDiscount(selectedPrice?.price, selectedPrice?.discount)">
                                             <h4><del>{{selectedPrice?.price | currency:
                                                     'USD'}}</del><span>{{selectedPrice?.discount}}%</span></h4>
@@ -110,7 +114,7 @@
                                                 {{selectedPrice?.price | currency: 'USD'}}
                                             </h3>
                                         </div> -->
-            
+
                                         <div id="selectSize" class="addeffect-section product-description">
                                             <!-- <h6 class="product-title">Materials</h6>
                                             <div class="form-group custom-select mb-4">
@@ -121,9 +125,9 @@
                                                     <option value="4">Vinyl (peel stick)</option>
                                                 </select>
                                                 <i class="fa fa-chevron-down"></i> -->
-            
+
                                             <h6 class="product-title">select size</h6>
-            
+
                                             <!-- <ng-select formControlName="size" (change)="onSelectedPrice($event)"
                                                 [hideSelected]="true" [searchable]="false">
                                                 <ng-option *ngFor="let size of product?.sizes" [value]="size">{{size.size}} -
@@ -131,22 +135,22 @@
                                             </ng-select> -->
 
                                             <div class="size-box" *ngIf="product?.sizes.length > 0">
-                                                <ul class="radio-section-block">
-                                                    
+                                                <ul class="radio-section-block" [ngClass]="{'disabled': myFormAddProduct.value.height && myFormAddProduct.value.width}">
+
                                                     <li *ngFor="let size of product?.sizes; let indexValueSize = index">
                                                         <label class="d-flex" [for]="size.id"
                                                             (click)="onSelectedPrice(size)"
                                                             [ngClass]="{'active': size.id == selectedPrice.id}">
                                                             <div>
                                                                 {{size.size}} - ({{size.price | currency}}) <span
-                                                                *ngIf="size.discount != null">-
-                                                                ({{size.discount}}%)</span>
+                                                                    *ngIf="size.discount != null">-
+                                                                    ({{size.discount}}%)</span>
                                                             </div>
                                                         </label>
                                                     </li>
                                                 </ul>
                                             </div>
-            
+
                                             <!-- <div class="size-box">
             
             
@@ -165,19 +169,29 @@
                                                     </li>
                                                 </ul>
                                             </div> -->
-                                            <h6 class="product-title mt-4 text-left" *ngIf="product?.customSize">custom size</h6>
+                                            <h6 class="product-title mt-4 text-left" *ngIf="product?.customSize">
+                                                custom size
+                                                <small class="ms-1" style="color: #6d6d6d">- Inches</small>
+                                            </h6>
                                             <div class="custom-size" *ngIf="product?.customSize">
                                                 <div class="box-size">
-                                                    <h4>Height</h4>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" placeholder="0">
-                                                       <!--  <label class="custom-label">Ft</label> -->
+                                                        <h5>Height</h5>
+                                                        <input formControlName="height" class="form-control" type="number" min="0" max="1000"  placeholder="0">
+                                                        <!--  <label class="custom-label">Ft</label> -->
                                                     </div>
                                                     <i class='bx bx-x'></i>
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" placeholder="0">
-                                                       <!--  <label class="custom-label">Ft</label> -->
+                                                        <h5>Width</h5>
+                                                        <input formControlName="width" class="form-control" type="number" min="0" max="1000"  placeholder="0">
+                                                        <!--  <label class="custom-label">Ft</label> -->
                                                     </div>
+                                                </div>
+                                                <div class="tableSizes" *ngIf="customSizeValue?.height && customSizeValue?.width">
+                                                    <ul>
+                                                        <li>Inches (In): <span>{{customSizeValue?.height}} x {{customSizeValue?.width}}</span></li>
+                                                        <li>Feet (Ln): <span>{{InchesToFoot(customSizeValue?.height)}} x {{InchesToFoot(customSizeValue?.width)}}</span></li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                             <h6 class="product-title mt-4">quantity</h6>
@@ -185,15 +199,19 @@
                                             <div class="qty-box">
                                                 <div class="input-group">
                                                     <span class="input-group-prepend">
-                                                        <button type="button" class="btn quantity-left-minus" (click)="myFormAddProduct.controls['quantity'].setValue(quantity - 1)">
+                                                        <button type="button" class="btn quantity-left-minus"
+                                                            (click)="quantity > 1 ? myFormAddProduct.controls['quantity'].setValue(quantity - 1) : null; selecteChangePrice()">
                                                             <i class="ti-angle-left"></i>
-                                                        </button> 
+                                                        </button>
                                                     </span>
-                                                    <input type="number" name="quantity" class="form-control input-number" value="1" formControlName="quantity" min="1" max="100">
+                                                    <input type="number" name="quantity"
+                                                        class="form-control input-number" value="1"
+                                                        formControlName="quantity" min="1" max="100">
                                                     <span class="input-group-prepend">
-                                                        <button type="button" class="btn quantity-right-plus" (click)="myFormAddProduct.controls['quantity'].setValue(quantity + 1)">
+                                                        <button type="button" class="btn quantity-right-plus"
+                                                            (click)="myFormAddProduct.controls['quantity'].setValue( quantity + 1); selecteChangePrice()">
                                                             <i class="ti-angle-right"></i>
-                                                       </button>
+                                                        </button>
                                                     </span>
                                                 </div>
                                             </div>
@@ -265,17 +283,17 @@
                                 class="icofont icofont-ui-home"></i>Details</a>
                         <div class="material-border"></div>
                     </li> -->
-                   <!--  <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab"
+                    <!--  <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab"
                             href="#top-profile" role="tab" aria-selected="false"><i
                                 class="icofont icofont-man-in-glasses"></i>Specification</a>
                         <div class="material-border"></div>
                     </li> -->
-                    <li class="nav-item"><a class="nav-link active" id="contact-top-tab" data-bs-toggle="tab"
+                    <li class="nav-item" *ngIf="product?.urlVideo || product?.video"><a class="nav-link active" id="contact-top-tab" data-bs-toggle="tab"
                             href="#top-contact" role="tab" aria-selected="false"><i
                                 class="icofont icofont-contacts"></i>Video</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
+                    <li class="nav-item"><a class="nav-link active" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
                             role="tab" aria-selected="false"><i class="icofont icofont-contacts"></i>Write Review</a>
                         <div class="material-border"></div>
                     </li>
@@ -342,13 +360,14 @@
                             </table>
                         </div>
                     </div> -->
-                    <div class="tab-pane fade show active" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab" *ngIf="product?.urlVideo || product?.video">
+                    <div class="tab-pane fade" id="top-contact" role="tabpanel"
+                        aria-labelledby="contact-top-tab" *ngIf="product?.urlVideo || product?.video">
                         <div class="">
-                            <iframe width="560" height="315" [src]="global.urlImage + product?.video | safeUrl" 
+                            <iframe width="560" height="315" [src]="global.urlImage + product?.video | safeUrl"
                                 allow="autoplay; encrypted-media" allowfullscreen *ngIf="product?.video"></iframe>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
+                    <div class="tab-pane fade show active" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
                         <form class="theme-form">
                             <div class="form-row row">
                                 <div class="col-md-12">

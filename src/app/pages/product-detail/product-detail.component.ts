@@ -12,9 +12,14 @@ import { GlobalService } from 'src/app/services/global.service';
 export class ProductDetailComponent implements OnInit {
 
   product;
+  copyProduct;
   myFormAddProduct: FormGroup;
   loading: boolean = false;
+
+
   selectedPrice;
+  customPrice;
+  customSizeValue;
 
   customOptions: OwlOptions = {
     loop: false,
@@ -32,10 +37,35 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.myFormAddProduct = this.fb.group({
-      size: [],
-      quantity: [1],
+      size: this.fb.array,
+      quantity: [1, [Validators.min(0)]],
+      height: [ ,[Validators.min(0)]],
+      width: [ ,[Validators.max(1000)]],
     });
+
+
+    this.myFormAddProduct.valueChanges.subscribe(selectedValue => {
+
+      const { height, width } = selectedValue;
+
+      this.customSizeValue = {
+        width, height
+       }
+      const products = Object.assign({}, this.copyProduct)
+
+      this.customPrice = height && width ? (parseFloat(height) * parseFloat(width)) * this.global.priceWallpaper : null;
+      this.customPrice = this.customPrice * selectedValue.quantity;
+
+      this.product.sizes = products.sizes.map(prod => {
+        prod.price * selectedValue.quantity
+        return { ...prod, price: prod.price * selectedValue.quantity }
+      })
+    });
+
+    console.log(this.customSizeValue)
+
   }
+
 
   getProduct() {
     this.loading = true;
@@ -46,16 +76,17 @@ export class ProductDetailComponent implements OnInit {
       idProduct
     }
 
-    this.global.postService('products/getProductById',data).subscribe(response => {
+    this.global.postService('products/getProductById', data).subscribe(response => {
       this.loading = false;
       console.log(response)
-      if(response['status'] === 'success'){
+      if (response['status'] === 'success') {
         this.product = response['data'];
+        this.copyProduct = Object.assign({}, this.product);
 
-        const selectFilter = this.product.sizes.filter(price => price.id == idPrice );
+        const selectFilter = this.product.sizes.filter(price => price.id == idPrice);
 
         this.selectedPrice = selectFilter[0] || this.product.sizes[0];
-        this.myFormAddProduct.controls['size'].setValue(this.selectedPrice);
+
       }
     })
 
@@ -65,23 +96,27 @@ export class ProductDetailComponent implements OnInit {
     return this.myFormAddProduct.controls['quantity'].value;
   }
 
-  setInputNumber(){
-    console.log(this.myFormAddProduct.value)
-  }
 
-  onSelectedPrice(value){
+  onSelectedPrice(value) {
     this.selectedPrice = value
-    console.log(this.selectedPrice)
   }
 
-  onSubmit(){
+  onSubmit() {
     /* if (!this.myFormProducts.invalid) {
     
     } */
   }
 
-  
+  selecteChangePrice(){ 
+    this.selectedPrice = this.product.sizes.find(prod => { 
+      return prod.id == this.selectedPrice.id
+    })
+  }
 
-  
+  InchesToFoot(value) { 
+    let result = (0.083333333 * value) / 1;
+    result.toFixed(2)
+    return Number(result.toFixed(2));
+  }
 
 }
