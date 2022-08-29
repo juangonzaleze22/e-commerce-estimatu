@@ -21,11 +21,11 @@
 <!-- breadcrumb End -->
 
 
-<section class="card">
+<section class="card mb-3">
     <div class="collection-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div class="box-image">
                         <img [src]="product?.imagenes[0]" class="img-fluid aspect-radio-cover" [alt]="product?.titulo"
                             appValidImage>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 rtl-text">
+                <div class="col-lg-6 rtl-text">
                     <div class="row">
                         <div class="col">
                             <div class="product-right">
@@ -72,7 +72,20 @@
                                 <h3 class="price-detail" *ngIf="customPrice">
                                     {{customPrice | currency: 'USD'}}
                                 </h3>
-                                
+                                <h5 class="shipping" *ngIf="product?.envio">
+                                    <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 
+                                    Free shipping 
+
+                                    <small class="ms-3" *ngIf="product?.textEnvio != ''">{{product?.textEnvio}}</small>
+                                </h5>
+                                <div class="section-info">
+                                    <a target="_blank" class="box-product-guide" routerLink="/installations-guide" *ngIf="product?.nombreCategoria == 'Wallpaper'">
+                                        <img class="img-fluid" src="assets/images/home/guide.png" alt="">
+                                        <h5>Installation guide</h5>
+                                    </a>
+                                </div>
+                               
+
                                 <!-- <ul class="color-variant">
                                     <li class="bg-light0 active"></li>
                                     <li class="bg-light1"></li>
@@ -116,24 +129,7 @@
                                         </div> -->
 
                                         <div id="selectSize" class="addeffect-section product-description">
-                                            <!-- <h6 class="product-title">Materials</h6>
-                                            <div class="form-group custom-select mb-4">
-                                                <select name="" id="" class="form-control ">
-                                                    <option value="1">Vinyl (peel stick)</option>
-                                                    <option value="2">Vinyl (peel stick)</option>
-                                                    <option value="3">Vinyl (peel stick)</option>
-                                                    <option value="4">Vinyl (peel stick)</option>
-                                                </select>
-                                                <i class="fa fa-chevron-down"></i> -->
-
                                             <h6 class="product-title">select size</h6>
-
-                                            <!-- <ng-select formControlName="size" (change)="onSelectedPrice($event)"
-                                                [hideSelected]="true" [searchable]="false">
-                                                <ng-option *ngFor="let size of product?.sizes" [value]="size">{{size.size}} -
-                                                    {{size.price | currency}}</ng-option>
-                                            </ng-select> -->
-
                                             <div class="size-box" *ngIf="product?.sizes.length > 0">
                                                 <ul class="radio-section-block" [ngClass]="{'disabled': myFormAddProduct.value.height && myFormAddProduct.value.width}">
 
@@ -150,25 +146,6 @@
                                                     </li>
                                                 </ul>
                                             </div>
-
-                                            <!-- <div class="size-box">
-            
-            
-                                                <ul class="radio-section-block">
-                                                    <li>
-                                                        <input id="size1" type="radio" name="size">
-                                                        <label for="size1">2"X4"</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="size2" type="radio" name="size">
-                                                        <label for="size2">2"X6"</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="size3" type="radio" name="size">
-                                                        <label for="size3">4"X8"</label>
-                                                    </li>
-                                                </ul>
-                                            </div> -->
                                             <h6 class="product-title mt-4 text-left" *ngIf="product?.customSize">
                                                 custom size
                                                 <small class="ms-1" style="color: #6d6d6d">- Inches</small>
@@ -189,8 +166,8 @@
                                                 </div>
                                                 <div class="tableSizes" *ngIf="customSizeValue?.height && customSizeValue?.width">
                                                     <ul>
-                                                        <li>Inches (In): <span>{{customSizeValue?.height}} x {{customSizeValue?.width}}</span></li>
-                                                        <li>Feet (Ln): <span>{{InchesToFoot(customSizeValue?.height)}} x {{InchesToFoot(customSizeValue?.width)}}</span></li>
+                                                        <li>Inches (In): <span>{{customSizeValue?.height}}" x {{customSizeValue?.width}}"</span></li>
+                                                        <li>Feet (Ln): <span>{{InchesToFoot(customSizeValue?.height)}}' x {{InchesToFoot(customSizeValue?.width)}}'</span></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -253,14 +230,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="border-product">
-                                    <h5 class="free-shopping mt-3" *ngIf="product?.envio">
-                                        <img src="assets/images/icon/free-shopping.png" width="30" alt=""
-                                            class="img-fluid mr-3">
-                                        Free shipping
-                                        <small class="ms-3" style="color: #6d6d6d">{{product?.textEnvio}}</small>
-                                    </h5>
                                 </div>
                             </div>
                         </div>

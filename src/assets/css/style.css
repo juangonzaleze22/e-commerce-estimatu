@@ -20117,13 +20117,12 @@ header.stickycls {
 }
 
 .product-right h2 {
-  text-transform: uppercase;
-  margin-bottom: 15px;
+  text-transform: initial;
+  margin-bottom: 20px;
   font-size: 25px;
   line-height: 1.2em;
+  font-weight: 500;
   font-family: var(--font-primary);
-  font-size: 25px;
-  font-weight: bold;
   color: var(--color-text-primary);
 }
 
@@ -38622,7 +38621,7 @@ body.rtl .account-setting {
 }
 
 .radio-section-block label.active{
-  border-color: var(--theme-deafult);
+  box-shadow: 1px 3px 7px #009faeb8;
 }
 
 .radio-section-block input {
@@ -38639,16 +38638,18 @@ body.rtl .account-setting {
 }
 
 .radio-section-block label {
-  border: solid 1px #ddd;
-  padding: 15px 15px 12px;
+  position: relative;
+  padding: 12px 12px;
   line-height: 1;
   transition: .3s all;
   margin: 0;
   font-family: var(--font-primary);
   font-size: 14px;
   font-weight: normal;
-  color: #13241f;
-  letter-spacing: 1.35px;
+  color: #6d6d6d;
+  letter-spacing: 1.2;
+  white-space: nowrap;
+  box-shadow: 1px 3px 7px rgb(0 0 0 / 25%);
   cursor: pointer;
 }
 
@@ -38686,7 +38687,7 @@ body.rtl .account-setting {
 .custom-size input {
   width: 100%;
   max-width: 66px;
-  height: 46px;
+  height: 36px;
   border: solid 1px #ddd;
   text-align: center;
   padding: 0;

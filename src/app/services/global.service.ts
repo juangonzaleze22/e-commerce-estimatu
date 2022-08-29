@@ -17,13 +17,15 @@ export class GlobalService {
   isLoggedIn$ = new EventEmitter<boolean>();
 
   public IdAmin = "62e83d743bd6dd3957eb912f";
-  public priceWallpaper = 6;
+  public priceFootWallpaper = 6;
+  public priceInchesWallpaper = 0.35;
+
 
 
   url = "https://api.mamidecor.com/api/";
   urlImage = "https://api.mamidecor.com/";
-  //url = "http://localhost:7915/api/";
-  //urlImage = "http://localhost:7915/";
+/*   url = "http://localhost:7915/api/";
+  urlImage = "http://localhost:7915/"; */
 
   constructor(
     private http: HttpClient,

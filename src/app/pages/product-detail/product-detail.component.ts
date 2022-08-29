@@ -53,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
        }
       const products = Object.assign({}, this.copyProduct)
 
-      this.customPrice = height && width ? (parseFloat(height) * parseFloat(width)) * this.global.priceWallpaper : null;
+      this.customPrice = height && width ? (parseFloat(height) * parseFloat(width)) * this.global.priceInchesWallpaper : null;
       this.customPrice = this.customPrice * selectedValue.quantity;
 
       this.product.sizes = products.sizes.map(prod => {
