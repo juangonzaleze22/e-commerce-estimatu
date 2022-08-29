@@ -38642,7 +38642,7 @@ body.rtl .account-setting {
   padding: 12px 12px;
   line-height: 1;
   transition: .3s all;
-  margin: 0;
+  margin: 5px 0;
   font-family: var(--font-primary);
   font-size: 14px;
   font-weight: normal;
