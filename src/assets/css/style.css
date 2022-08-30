@@ -20235,7 +20235,7 @@ header.stickycls {
   border-radius: 50%;
   margin-right: 10px;
   cursor: pointer;
-  border: 1px solid #efefef;
+/*   border: 1px solid #efefef; */
   text-align: center;
 }
 

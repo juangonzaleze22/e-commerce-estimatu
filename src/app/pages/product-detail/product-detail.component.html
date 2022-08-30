@@ -70,7 +70,7 @@
                                     <span>{{selectedPrice?.discount}}% </span>
                                 </h3>
                                 <h3 class="price-detail" *ngIf="customPrice">
-                                    {{customPrice | currency: 'USD'}}
+                                    {{customPrice | currency: 'USD' : number:'1.2-2' }}
                                 </h3>
                                 <h5 class="shipping" *ngIf="product?.envio">
                                     <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 

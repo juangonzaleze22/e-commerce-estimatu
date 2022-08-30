@@ -18,7 +18,7 @@ export class GlobalService {
 
   public IdAmin = "62e83d743bd6dd3957eb912f";
   public priceFootWallpaper = 6;
-  public priceInchesWallpaper = 0.35;
+  public priceInchesWallpaper = 0.035;
 
 
 
