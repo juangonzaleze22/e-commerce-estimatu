@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import {trigger, transition, style, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
+import { CarService } from 'src/app/services/car.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
@@ -41,9 +43,13 @@ export class ProductsListComponent implements OnInit {
   limit: number = 9;
   category;
 
+  suscription: Subscription
+
+
   constructor(
     public global: GlobalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private carService: CarService
   ) { }
 
   ngOnInit(): void {
@@ -91,6 +97,10 @@ export class ProductsListComponent implements OnInit {
     console.log('scrolled down!!');
     this.page++
     this.getAllProdutcs();
+  }
+
+  addProduct(pruduct: any){ 
+    this.carService.addElementToCar(pruduct);
   }
 
 

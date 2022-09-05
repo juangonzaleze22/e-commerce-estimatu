@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-4" *ngFor="let product of products" [@inOutAnimation]>
-                <app-card-living [product]="product"></app-card-living>
+                <app-card-living [product]="product" (carProduct)="addProduct($event)" ></app-card-living>
             </div>
             <div class="col-12">
                 <app-loading *ngIf="loading"></app-loading>

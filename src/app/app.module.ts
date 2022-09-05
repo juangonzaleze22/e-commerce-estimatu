@@ -37,6 +37,7 @@ import { ValidImageDirective } from './directives/valid-image.directive';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserModule, 
     InfiniteScrollModule,
     NgSelectModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }), // ToastrModule added
 
   ],
   providers: [],

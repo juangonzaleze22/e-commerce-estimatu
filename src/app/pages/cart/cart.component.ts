@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Subscription } from 'rxjs';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +10,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class CartComponent implements OnInit {
 
-  
+  listCars;
+
+  subscription: Subscription;
+
+
   customOptions: OwlOptions = {
     loop: true,
     dots: false,
@@ -25,15 +31,43 @@ export class CartComponent implements OnInit {
         items: 5
       },
       940: {
-        items:6
+        items: 6
       }
     },
     nav: false
   }
 
-  constructor() { }
+  constructor(
+    private carService: CarService
+  ) { }
 
   ngOnInit(): void {
+    this.subscription = this.carService.array$.subscribe(data => {
+      this.listCars = data;
+      console.log(this.listCars)
+    })
   }
+
+
+  pricePerUnit(sizes, idSelectedPrice) {
+    const price = sizes.filter(size => size.id == idSelectedPrice)
+    return price[0];
+  }
+
+  getTotalPrice() {
+    return this.listCars.reduce((sum, i) => {
+      return sum + (i.selectedSize.price * i.quantity)
+    }, 0)
+  }
+
+  removeItemCar(index) {
+    this.listCars.splice(index, 1);
+    this.getTotalPrice();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
 }

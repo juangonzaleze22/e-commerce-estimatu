@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { GlobalService } from 'src/app/services/global.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Subscription } from 'rxjs';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-navbar',
@@ -35,7 +37,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class NavbarComponent implements OnInit {
 
   categories;
-
+  listCard: Array<object> = [];
+  suscription: Subscription;
   isOpen = false;
 
   arrows = {
@@ -51,7 +54,7 @@ export class NavbarComponent implements OnInit {
     pullDrag: false,
     navText: [this.arrows.left, this.arrows.right],
     nav: true,
-    margin:10,
+    margin: 10,
     responsive: {
       0: {
         items: 2
@@ -73,18 +76,20 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public global: GlobalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private carService: CarService
   ) { }
 
   ngOnInit(): void {
     this.getCategories()
 
+    this.suscription = this.carService.array$.subscribe(res => {
+      this.listCard = res
+    });
 
   }
 
   getCategories() {
-
-    console.log(this.global.IdAmin)
 
     let admin = {
       client: true
@@ -125,6 +130,10 @@ export class NavbarComponent implements OnInit {
       item
     }
 
+  }
+
+  removeItemCar(index) {
+    this.listCard.splice(index, 1);
   }
 
   closeDropdown() {

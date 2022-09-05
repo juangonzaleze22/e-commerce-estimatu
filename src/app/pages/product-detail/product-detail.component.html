@@ -73,18 +73,19 @@
                                     {{customPrice | currency: 'USD' : number:'1.2-2' }}
                                 </h3>
                                 <h5 class="shipping" *ngIf="product?.envio">
-                                    <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3"> 
-                                    Free shipping 
+                                    <img src="assets/images/icon/free-shopping.png" alt="" class="img-fluid mr-3">
+                                    Free shipping
 
                                     <small class="ms-3" *ngIf="product?.textEnvio != ''">{{product?.textEnvio}}</small>
                                 </h5>
                                 <div class="section-info">
-                                    <a target="_blank" class="box-product-guide" routerLink="/installations-guide" *ngIf="product?.nombreCategoria == 'Wallpaper'">
+                                    <a target="_blank" class="box-product-guide" routerLink="/installations-guide"
+                                        *ngIf="product?.nombreCategoria == 'Wallpaper'">
                                         <img class="img-fluid" src="assets/images/home/guide.png" alt="">
                                         <h5>Installation guide</h5>
                                     </a>
                                 </div>
-                               
+
 
                                 <!-- <ul class="color-variant">
                                     <li class="bg-light0 active"></li>
@@ -131,7 +132,8 @@
                                         <div id="selectSize" class="addeffect-section product-description">
                                             <h6 class="product-title">select size</h6>
                                             <div class="size-box" *ngIf="product?.sizes.length > 0">
-                                                <ul class="radio-section-block" [ngClass]="{'disabled': myFormAddProduct.value.height && myFormAddProduct.value.width}">
+                                                <ul class="radio-section-block"
+                                                    [ngClass]="{'disabled': myFormAddProduct.value.height && myFormAddProduct.value.width}">
 
                                                     <li *ngFor="let size of product?.sizes; let indexValueSize = index">
                                                         <label class="d-flex" [for]="size.id"
@@ -154,20 +156,25 @@
                                                 <div class="box-size">
                                                     <div class="form-group">
                                                         <h5>Height</h5>
-                                                        <input formControlName="height" class="form-control" type="number" min="0" max="1000"  placeholder="0">
+                                                        <input formControlName="height" class="form-control"
+                                                            type="number" min="0" max="1000" placeholder="0">
                                                         <!--  <label class="custom-label">Ft</label> -->
                                                     </div>
                                                     <i class='bx bx-x'></i>
                                                     <div class="form-group">
                                                         <h5>Width</h5>
-                                                        <input formControlName="width" class="form-control" type="number" min="0" max="1000"  placeholder="0">
+                                                        <input formControlName="width" class="form-control"
+                                                            type="number" min="0" max="1000" placeholder="0">
                                                         <!--  <label class="custom-label">Ft</label> -->
                                                     </div>
                                                 </div>
-                                                <div class="tableSizes" *ngIf="customSizeValue?.height && customSizeValue?.width">
+                                                <div class="tableSizes"
+                                                    *ngIf="customSizeValue?.height && customSizeValue?.width">
                                                     <ul>
-                                                        <li>Inches (In): <span>{{customSizeValue?.height}}" x {{customSizeValue?.width}}"</span></li>
-                                                        <li>Feet (Ln): <span>{{InchesToFoot(customSizeValue?.height)}}' x {{InchesToFoot(customSizeValue?.width)}}'</span></li>
+                                                        <li>Inches (In): <span>{{customSizeValue?.height}}" x
+                                                                {{customSizeValue?.width}}"</span></li>
+                                                        <li>Feet (Ln): <span>{{InchesToFoot(customSizeValue?.height)}}'
+                                                                x {{InchesToFoot(customSizeValue?.width)}}'</span></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -194,10 +201,13 @@
                                             </div>
                                         </div>
                                         <div class="product-buttons mt-4">
-                                            <button id="cartEffect" class="btn btn-solid hover-solid btn-animation my-2"
-                                                type="submit">add to cart</button>
-                                            <button href="#" class="btn btn-outline btn-icons-hearth my-2"><i
-                                                    class='bx bx-heart'></i> wishlist</button>
+                                            <button (click)="addProduct()"
+                                                class="btn btn-solid hover-solid btn-animation my-2" type="button">add
+                                                to cart</button>
+                                            <button href="#" class="btn btn-outline btn-icons-hearth my-2">
+                                                <i class='bx bx-heart'></i>
+                                                wishlist
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -257,13 +267,14 @@
                                 class="icofont icofont-man-in-glasses"></i>Specification</a>
                         <div class="material-border"></div>
                     </li> -->
-                    <li class="nav-item" *ngIf="product?.urlVideo || product?.video"><a class="nav-link active" id="contact-top-tab" data-bs-toggle="tab"
-                            href="#top-contact" role="tab" aria-selected="false"><i
-                                class="icofont icofont-contacts"></i>Video</a>
+                    <li class="nav-item" *ngIf="product?.urlVideo || product?.video"><a class="nav-link active"
+                            id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab"
+                            aria-selected="false"><i class="icofont icofont-contacts"></i>Video</a>
                         <div class="material-border"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
-                            role="tab" aria-selected="false"><i class="icofont icofont-contacts"></i>Write Review</a>
+                    <li class="nav-item"><a class="nav-link active" id="review-top-tab" data-bs-toggle="tab"
+                            href="#top-review" role="tab" aria-selected="false"><i
+                                class="icofont icofont-contacts"></i>Write Review</a>
                         <div class="material-border"></div>
                     </li>
                 </ul>
@@ -329,14 +340,15 @@
                             </table>
                         </div>
                     </div> -->
-                    <div class="tab-pane fade" id="top-contact" role="tabpanel"
-                        aria-labelledby="contact-top-tab" *ngIf="product?.urlVideo || product?.video">
+                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab"
+                        *ngIf="product?.urlVideo || product?.video">
                         <div class="">
                             <iframe width="560" height="315" [src]="global.urlImage + product?.video | safeUrl"
                                 allow="autoplay; encrypted-media" allowfullscreen *ngIf="product?.video"></iframe>
                         </div>
                     </div>
-                    <div class="tab-pane fade show active" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
+                    <div class="tab-pane fade show active" id="top-review" role="tabpanel"
+                        aria-labelledby="review-top-tab">
                         <form class="theme-form">
                             <div class="form-row row">
                                 <div class="col-md-12">
@@ -404,12 +416,15 @@
                                     alt=""></a>
                         </div>
                         <div class="cart-info cart-wrap">
-                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                            <button>
+                                <i class="ti-shopping-cart"></i>
+                            </button>
+                            <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart"
+                                    aria-hidden="true"></i></a> <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
+                                    aria-hidden="true"></i></a> <a href="compare.html" title="Compare"><i
+                                    class="ti-reload" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="product-detail">

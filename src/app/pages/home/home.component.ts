@@ -129,16 +129,13 @@ export class HomeComponent implements OnInit {
 
 
   getPriceDiscount(sizes){
-
     let selectPrice;
-
     sizes.some(size => { 
       if (size.discount){
         selectPrice = size;
         return size
       }
     })
-
     return selectPrice
   }
 }

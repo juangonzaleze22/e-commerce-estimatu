@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
+import { CarService } from 'src/app/services/car.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -11,10 +13,12 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class ProductDetailComponent implements OnInit {
 
+
   product;
   copyProduct;
   myFormAddProduct: FormGroup;
   loading: boolean = false;
+  showMore: boolean = false;
 
 
   selectedPrice;
@@ -32,6 +36,8 @@ export class ProductDetailComponent implements OnInit {
     public global: GlobalService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
+    private carService: CarService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +45,10 @@ export class ProductDetailComponent implements OnInit {
     this.myFormAddProduct = this.fb.group({
       size: this.fb.array,
       quantity: [1, [Validators.min(0)]],
-      height: [ ,[Validators.min(0)]],
-      width: [ ,[Validators.max(1000)]],
+      height: [, [Validators.min(0)]],
+      width: [, [Validators.max(1000)]],
     });
+
 
 
     this.myFormAddProduct.valueChanges.subscribe(selectedValue => {
@@ -50,7 +57,7 @@ export class ProductDetailComponent implements OnInit {
 
       this.customSizeValue = {
         width, height
-       }
+      }
       const products = Object.assign({}, this.copyProduct)
 
       this.customPrice = height && width ? (parseFloat(height) * parseFloat(width)) * this.global.priceInchesWallpaper : null;
@@ -62,13 +69,15 @@ export class ProductDetailComponent implements OnInit {
       })
     });
 
-    console.log(this.customSizeValue)
-
+    this.route.params.subscribe(() => {
+      this.getProduct();
+    })
   }
 
 
   getProduct() {
     this.loading = true;
+
     const idProduct = this.route.snapshot.paramMap.get('idProduct');
     const idPrice = this.route.snapshot.paramMap.get('idPrice');
 
@@ -107,16 +116,29 @@ export class ProductDetailComponent implements OnInit {
     } */
   }
 
-  selecteChangePrice(){ 
-    this.selectedPrice = this.product.sizes.find(prod => { 
+  selecteChangePrice() {
+    this.selectedPrice = this.product.sizes.find(prod => {
       return prod.id == this.selectedPrice.id
     })
   }
 
-  InchesToFoot(value) { 
+  InchesToFoot(value) {
     let result = (0.083333333 * value) / 1;
     result.toFixed(2)
     return Number(result.toFixed(2));
+  }
+
+  addProduct() {
+    let dataCarSelected = {
+      ...this.product,
+      selectedSize: this.selectedPrice,
+      customPrice: this.customPrice,
+      quantity: this.quantity
+    }
+
+    this.carService.addElementToCar(dataCarSelected);
+    console.log(dataCarSelected)
+    this.toastr.show("Product added to cart")
   }
 
 }

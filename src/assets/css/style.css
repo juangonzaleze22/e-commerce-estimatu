@@ -9933,6 +9933,10 @@ header.header-style .onhover-dropdown:before {
   min-width: 270px;
   left: unset;
   right: 0;
+  max-height: 450px;
+  overflow: auto;
+  overflow-x: hidden;
+  z-index: 9999;
 }
 
 .main-menu .menu-right .icon-nav .onhover-div .show-div.shopping-cart li {
@@ -38744,6 +38748,15 @@ body.rtl .account-setting {
   color: #7d7d7d;
 }
 
+@media (max-width: 992px){
+  .custom-size {
+    /*  flex-direction: column; */
+     margin: 15px auto;
+     justify-content: center;
+   }
+}
+
+
 @media (max-width: 480px){
   .custom-size .tableSizes{
     margin: 25px auto;
@@ -38921,4 +38934,16 @@ body.rtl .account-setting {
 
 .owl-navbar .owl-next{ 
   right: 0
+}
+
+/* toastr */
+
+.ngx-toastr{ 
+  background-color: #fff !important;
+  pointer-events: auto;
+  color: #666 !important;
+  border-radius: 0 !important;
+  border-left: 6px solid var(--theme-deafult) !important;
+  padding: 15px 15px 15px 15px !important;
+  font-size: 16px;
 }

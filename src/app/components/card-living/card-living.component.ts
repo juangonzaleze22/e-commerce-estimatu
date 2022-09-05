@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CarService } from 'src/app/services/car.service';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -7,21 +8,22 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./card-living.component.scss']
 })
 export class CardLivingComponent implements OnInit {
-  
+
   @Input() product;
+  @Output() carProduct = new EventEmitter;
+
   divShow: boolean = false;
 
   constructor(
-    public global: GlobalService
+    public global: GlobalService,
   ) { }
 
   ngOnInit(): void {
- /*    this.product.sizes.array.forEach(element => {
-      element.price = parseFloat(element.price);
-      element.discount? parseFloat(element.price) : null
-      return element
-    }); */
 
+  }
+
+  addProduct(product: any) {
+    this.carProduct.emit(product)
   }
 
 }
