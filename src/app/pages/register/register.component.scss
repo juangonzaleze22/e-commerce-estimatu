@@ -1,0 +1,29 @@
+.mesm-2{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    input{
+        padding: 11px !important;
+    }
+    
+    label{ 
+        margin: 0;
+        margin-left: 15px;
+        margin-top: 3px;
+    }
+
+    .msg-alert{
+        flex: 0 0 100%;
+    }
+}
+
+.mesm-2 input{
+    padding: 11px !important;
+}
+
+.mesm-2 label{ 
+    margin: 0;
+    margin-left: 15px;
+    margin-top: 3px;
+}
