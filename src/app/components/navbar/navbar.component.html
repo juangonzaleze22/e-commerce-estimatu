@@ -19,9 +19,14 @@
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                             </a>
                         </li>
-                        <li class="onhover-dropdown mobile-account" routerLink="profile">
+                     
+                        <li class="onhover-dropdown mobile-account" [routerLink]="dataUser? 'profile': 'login'" >
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            My Account
+                            {{ dataUser? dataUser?.nombre : 'Login'}}
+                        </li>
+                        <li class="onhover-dropdown mobile-account" *ngIf="dataUser" (click)="global.logOut()">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Logout
                         </li>
                     </ul>
                 </div>
@@ -39,6 +44,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="formSearch">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -47,13 +53,17 @@
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                         <div class="separator"></div>
-                        <input type="search" class="form-control inputSearch" placeholder="Search" />
+
+                        <ngx-autocomplete class="inputSearch" [searchKeyword]="'titulo'" [inputId]="'searchEmployee'"
+                            [placeholderValue]="'Search'" [entries]="produtcs" (selectedValue)="selectEvent($event)">
+                        </ngx-autocomplete>
                     </div>
                     <div class="menu-right pull-right">
                         <div>
                             <div class="icon-nav">
                                 <ul class="d-flex">
-                                    <div class="toggle-nav" (click)="isOpen = !isOpen"><i class="fa fa-bars sidebar-bar"></i></div>
+                                    <div class="toggle-nav" (click)="isOpen = !isOpen"><i
+                                            class="fa fa-bars sidebar-bar"></i></div>
                                     <li class="onhover-div mobile-setting">
                                         <div><img src="../assets/images/icon/setting.png" class="img-fluid lazyload"
                                                 alt=""> <i class="ti-settings"></i>
@@ -78,12 +88,13 @@
                                                 alt=""> <i class="ti-shopping-cart"></i></div>
                                         <span class="cart_qty_cls">{{listCard.length}}</span>
                                         <ul class="show-div shopping-cart">
-                                            <li *ngFor="let item of listCard; let i = index" [routerLink]="['/product-detail', item._id, item.selectedSize.id]">
+                                            <li *ngFor="let item of listCard; let i = index"
+                                                [routerLink]="['/product-detail', item._id, item.selectedSize.id]">
                                                 <div class="media">
                                                     <img alt="" class="me-3" [src]="item?.imagenes[0]" appValidImage>
                                                     <div class="media-body">
-                                                            <h4 class="text-truncate" style="max-width: 200px">
-                                                                {{item.titulo}}</h4>
+                                                        <h4 class="text-truncate" style="max-width: 200px">
+                                                            {{item.titulo}}</h4>
                                                         <h4><span>{{item.quantity}} x {{item.selectedSize.price |
                                                                 currency: 'USD'}}</span></h4>
                                                     </div>

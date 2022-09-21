@@ -98,8 +98,9 @@
          .inputSearch {
              height: 100%;
              border: none;
-             box-shadow: nones;
+             box-shadow: none;
              background-color: transparent;
+             width: 100%;
              @media (max-width: 992px) {
                  max-width: 45%;
              }

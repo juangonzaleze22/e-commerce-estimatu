@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from 'src/app/services/car.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { WishListService } from 'src/app/services/wish-list.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -34,10 +35,12 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     public global: GlobalService,
-    private route: ActivatedRoute,
+    private router: ActivatedRoute,
+    private route: Router,
     private fb: FormBuilder,
     private carService: CarService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private wishListService: WishListService
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +72,7 @@ export class ProductDetailComponent implements OnInit {
       })
     });
 
-    this.route.params.subscribe(() => {
+    this.router.params.subscribe(() => {
       this.getProduct();
     })
   }
@@ -78,8 +81,8 @@ export class ProductDetailComponent implements OnInit {
   getProduct() {
     this.loading = true;
 
-    const idProduct = this.route.snapshot.paramMap.get('idProduct');
-    const idPrice = this.route.snapshot.paramMap.get('idPrice');
+    const idProduct = this.router.snapshot.paramMap.get('idProduct');
+    const idPrice = this.router.snapshot.paramMap.get('idPrice');
 
     let data = {
       idProduct
@@ -139,6 +142,21 @@ export class ProductDetailComponent implements OnInit {
     this.carService.addElementToCar(dataCarSelected);
     console.log(dataCarSelected)
     this.toastr.show("Product added to cart")
+  }
+
+  addWhiteList(id: string) {
+    /*  this.WishListService.addProductWhiteList(id) */
+    const isLogged = this.global.isLogged();
+
+    if (!isLogged) {
+      this.toastr.show("Please log in before adding to wish list")
+      this.route.navigate(['/login']);
+      return
+    }
+
+    this.wishListService.addProductWishList(id).subscribe(result => {
+      console.log(result)
+    })
   }
 
 }

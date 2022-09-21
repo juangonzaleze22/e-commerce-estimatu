@@ -1,5 +1,5 @@
-  <!-- breadcrumb start -->
-  <div class="breadcrumb-section">
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -28,29 +28,102 @@
             <div class="col-lg-12">
                 <h3>create account</h3>
                 <div class="theme-card">
-                    <form class="theme-form">
+                    <form class="theme-form" [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
                         <div class="form-row row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4">
                                 <label for="email">First Name</label>
-                                <input type="text" class="form-control" id="fname" placeholder="First Name"
-                                    required="">
+                                <input formControlName="name" type="text" class="form-control" id="fname"
+                                    placeholder="First Name" required="">
+                                <div class="msg-alert text-red"
+                                    *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)">
+                                    <div class="" *ngIf="myForm.controls.name.errors.required">
+                                        Name is required
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4">
                                 <label for="review">Last Name</label>
-                                <input type="password" class="form-control" id="lname" placeholder="Last Name"
-                                    required="">
+                                <input formControlName="lastname" type="text" class="form-control" id="lname"
+                                    placeholder="Last Name" required="">
+                                <div class="msg-alert text-red"
+                                    *ngIf="myForm.get('lastname').invalid && (myForm.get('lastname').dirty || myForm.get('lastname').touched)">
+                                    <div class="" *ngIf="myForm.controls.lastname.errors.required">
+                                        Lastname is required
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-4">
                                 <label for="email">email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <input formControlName="email" type="text" class="form-control" id="email"
+                                    placeholder="Email" required="">
+                                <div class="msg-alert text-red"
+                                    *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
+                                    <div class="" *ngIf="myForm.controls.email.errors.required">
+                                        Email is required
+                                    </div>
+                                    <div class="" *ngIf="myForm.controls.email.errors.email">
+                                        Email is a format invalid
+                                    </div>
+                                    <div class="" *ngIf="myForm.controls.email.errors.emailExist">
+                                        Email already exists
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="review">Password</label>
+                                    <input formControlName="password" type="password" class="form-control" id="review"
+                                        placeholder="Enter your password" required="">
+                                    <div class="msg-alert text-red"
+                                        *ngIf="myForm.get('password').invalid && (myForm.get('password').dirty || myForm.get('password').touched)">
+                                        <div class="" *ngIf="myForm.controls.password.errors.required">
+                                            Password is required
+                                        </div>
+                                        <div class="" *ngIf="myForm.controls.password.errors.minlength">
+                                            Password required minimum 8 characters
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="review">Password</label>
+                                    <input formControlName="confirm_password" type="password" class="form-control"
+                                        id="review" placeholder="Enter your password" required="">
+                                    <div class="msg-alert text-red"
+                                        *ngIf="myForm.get('confirm_password').invalid && (myForm.get('confirm_password').dirty || myForm.get('confirm_password').touched)">
+                                        <div class="" *ngIf="myForm.controls.confirm_password.errors.required">
+                                            Confirm password is required
+                                        </div>
+                                        <div class="" *ngIf="myForm.controls.confirm_password.errors.minlength">
+                                            Password required minimum 8 characters
+                                        </div>
+                                    </div>
+                                    <div class="msg-alert text-red">
+                                        <div class="" *ngIf="myForm.errors?.invalid__password">
+                                            Confirm password is not match
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="review">Password</label>
-                                <input type="password" class="form-control" id="review"
-                                    placeholder="Enter your password" required="">
-                            </div><a href="#" class="btn btn-solid w-auto">create Account</a>
+                                <div class="form-terms">
+                                    <div class="form-check mesm-2">
+                                        <input type="checkbox" class="form-check-input" formControlName="terms">
+                                        <label for="terms" class="form-check-label ps-2"><span>I agree all statements in
+                                                <a href="" class="pull-right">Terms &amp;
+                                                    Conditions</a></span></label>
+                                        <div class="msg-alert text-red"
+                                            *ngIf="myForm.get('terms').invalid && (myForm.get('terms').dirty || myForm.get('terms').touched)">
+                                            <div class="" *ngIf="myForm.controls.terms.errors.required">
+                                                Terms and conditions is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-solid w-auto"
+                                [disabled]="myForm.invalid || loading">create Account</button>
                         </div>
                     </form>
                 </div>

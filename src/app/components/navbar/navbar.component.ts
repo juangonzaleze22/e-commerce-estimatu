@@ -6,6 +6,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { CarService } from 'src/app/services/car.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -39,13 +40,17 @@ export class NavbarComponent implements OnInit {
   categories;
   listCard: Array<object> = [];
   suscription: Subscription;
+  suscriptionLogged: Subscription;
+
   isOpen = false;
+
+  dataUser
 
   arrows = {
     left: "<img class='img-fluid' src='../assets/images/icon/bx-chevron-left.svg'>",
     right: "<img class='img-fluid' src='../assets/images/icon/bx-chevron-right.svg'>"
   }
-
+  isLogged: boolean;
   dropItem;
 
   customOptions: OwlOptions = {
@@ -74,18 +79,29 @@ export class NavbarComponent implements OnInit {
     },
   }
 
+  produtcs;
+
   constructor(
     public global: GlobalService,
     private route: ActivatedRoute,
-    private carService: CarService
+    private carService: CarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.getCategories()
-
+    this.getProductsByName();
     this.suscription = this.carService.array$.subscribe(res => {
       this.listCard = res
     });
+    this.suscriptionLogged = this.global.isLoggedIn$.subscribe(res => {
+      this.isLogged = res;
+      
+      this.dataUser = this.global.getUser()
+      console.log(this.dataUser)
+    });
+    this.dataUser = this.global.getUser()
+
 
   }
 
@@ -138,6 +154,20 @@ export class NavbarComponent implements OnInit {
 
   closeDropdown() {
     this.dropItem = {}
+  }
+
+  selectEvent(event) {
+    const { _id, titulo } = event
+    this.router.navigate(['/product-detail', _id])
+  }
+
+  getProductsByName() {
+    this.global.getService('products/getCategoryForSearch').subscribe(resp => {
+      console.log("response autocomplete data", resp);
+      if (resp['status'] === 'success') {
+        this.produtcs = resp['data']
+      }
+    })
   }
 
 }

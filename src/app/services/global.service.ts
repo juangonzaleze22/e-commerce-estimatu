@@ -22,10 +22,10 @@ export class GlobalService {
 
 
 
-  url = "https://api.mamidecor.com/api/";
-  urlImage = "https://api.mamidecor.com/";
-/*   url = "http://localhost:7915/api/";
-  urlImage = "http://localhost:7915/"; */
+/*   url = "https://api.mamidecor.com/api/";
+  urlImage = "https://api.mamidecor.com/"; */
+  url = "http://localhost:7915/api/";
+  urlImage = "http://localhost:7915/";
 
   constructor(
     private http: HttpClient,
@@ -70,9 +70,8 @@ export class GlobalService {
 
    getUser(){
     const userToken = localStorage.getItem('token');
-    const userData = localStorage.getItem('userData');
-    this.dataUser = JSON.parse(userData);
-    this.dataUser.token = userToken;
+    this.dataUser = JSON.parse(localStorage.getItem('userData'));
+    console.log('user', this.dataUser);
     return this.dataUser;
   }
 
@@ -80,11 +79,9 @@ export class GlobalService {
   logIn(token: string, user: object): void{
     localStorage.setItem('token', token);
     localStorage.setItem('userData', JSON.stringify(user));
-    this.dataUser = user;
     this.getUser();
-    this.isLoggedIn$.emit(false);
-    this._router.navigate(['dashboard'])
-    
+    this._router.navigate(['home'])
+    this.isLoggedIn$.emit(true);
   }
 
   updateDataUser(user){ 
@@ -130,6 +127,11 @@ export class GlobalService {
     }
     const result = parseInt(price) - (parseInt(price) * (parseInt(discount) / 100));
     return result
+  }
+
+  isLogged(){ 
+    const token = localStorage.getItem('token') || false;
+    return token 
   }
 
 }

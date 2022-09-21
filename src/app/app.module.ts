@@ -38,6 +38,7 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { LoadingComponent } from './components/loading/loading.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxAutocompleteModule } from 'ngx-angular-autocomplete';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule, 
     InfiniteScrollModule,
     NgSelectModule,
+    NgxAutocompleteModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }), // ToastrModule added
