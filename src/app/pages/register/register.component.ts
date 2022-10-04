@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   loading: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     private global: GlobalService,
     private toastr: ToastrService,
     private router: Router
